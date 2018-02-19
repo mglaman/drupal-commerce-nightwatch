@@ -1,13 +1,6 @@
-const env = require('./tests/Drupal/Nightwatch/env');
-
-const args = ['--disable-gpu', ...env.CHROME_ARGS];
-if (env.HEADLESS_CHROME) {
-  args.push('--headless');
-}
-
 module.exports = {
   src_folders: ['tests/Drupal/Nightwatch/Tests'],
-  output_folder: env.NIGHTWATCH_OUTPUT,
+  output_folder: process.env.NIGHTWATCH_OUTPUT,
   custom_commands_path: ['tests/Drupal/Nightwatch/Commands'],
   custom_assertions_path: '',
   page_objects_path: '',
@@ -18,20 +11,20 @@ module.exports = {
   test_settings: {
     default: {
       selenium_port: 9515,
-      selenium_host: env.WEBDRIVER_HOSTNAME,
+      selenium_host: process.env.WEBDRIVER_HOSTNAME,
       default_path_prefix: '',
       desiredCapabilities: {
         browserName: 'chrome',
         acceptSslCerts: true,
         chromeOptions: {
-          args,
+          args: process.env.CHROME_ARGS.split(' '),
         },
       },
       screenshots: {
         enabled: true,
         on_failure: true,
         on_error: true,
-        path: `${env.NIGHTWATCH_OUTPUT}/screenshots`,
+        path: `${process.env.NIGHTWATCH_OUTPUT}/screenshots`,
       },
     },
   },

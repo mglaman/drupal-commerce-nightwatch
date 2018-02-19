@@ -15,3 +15,6 @@ reports
 
 # Ignore local Nightwatch settings
 nightwatch.settings.json
+
+# Ignore dotenv
+.env
