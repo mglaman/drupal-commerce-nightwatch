@@ -116,7 +116,7 @@ Some settings can be overridden with environment variables:
 | Variable   | Default Value | Description |
 |------------|---------------|-------------|
 | `BASE_URL` | none | Set this to the base URL for your Drupal install. Do not include the trailing slash. |
-| `DB_URL` | none | Set this to the database URL for your Drupal install, e.g. `=mysql://username:password@localhost/databasename#table_prefix` |
+| `DB_URL` | none | Set this to the database URL for your Drupal install, e.g. `mysql://username:password@localhost/databasename#table_prefix` |
 | `CHROME_ARGS` | none | A list of arguments to pass to Chrome, separated by spaces e.g. `--disable-gpu --headless --no-sandbox`. |
 | `CHROME_STANDALONE` | `false` | Set this to true if Chrome is running in a standalone container and does not require chromedriver.start() to be called. | 
 | `NIGHTWATCH_OUTPUT` | `reports/nightwatch` | This will output the test results into `core/reports/nightwatch`. Passing a value here is relative to the `core` directory |
