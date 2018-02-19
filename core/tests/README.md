@@ -108,14 +108,16 @@ sudo -u www-data -E ./vendor/bin/phpunit -c core --testsuite functional-javascri
 - Install [Node.js](https://nodejs.org/en/download/) and [yarn](https://yarnpkg.com/en/docs/install). The versions required are specificed inside core/package.json in the `engines` field
 - Install [Google Chrome](https://www.google.com/chrome/browser/desktop/index.html)
 - Inside the `core` folder, run `yarn install`
-- Configure the nightwatch settings by copying `nightwatch.settings.json.default` to `nightwatch.settings.json`
-- Again inside the `core` folder, run `yarn test:js` to run the tests. By default this will output reports to `core/reports`
+- Configure the nightwatch settings by copying `.example.env` to `.env`
+- Again inside the `core` folder, run `yarn test:nightwatch` to run the tests. By default this will output reports to `core/reports`
 
 Some settings can be overridden with environment variables:
 
 | Variable   | Default Value | Description |
 |------------|---------------|-------------|
-| `HEADLESS_CHROME_DISABLED` |  `false` | If set to `true`, this will remove the `--headless` option passed to Chrome, allowing you to see tests running in realtime in the browser |
-| `NIGHTWATCH_OUTPUT` | `reports/nightwatch` | This will output the test results into `core/reports/nightwatch`. Passing a value here is relative to the `core` directory |
-| `NODE_ENV` | none | Setting this to `testbot` will cause Nightwatch to run with settings specific to the Drupal.org testbot |
 | `BASE_URL` | none | Set this to the base URL for your Drupal install. Do not include the trailing slash. |
+| `DB_URL` | none | Set this to the database URL for your Drupal install, e.g. `=mysql://username:password@localhost/databasename#table_prefix` |
+| `CHROME_ARGS` | none | A list of arguments to pass to Chrome, separated by spaces e.g. `--disable-gpu --headless --no-sandbox`. |
+| `CHROME_STANDALONE` | `false` | Set this to true if Chrome is running in a standalone container and does not require chromedriver.start() to be called. | 
+| `NIGHTWATCH_OUTPUT` | `reports/nightwatch` | This will output the test results into `core/reports/nightwatch`. Passing a value here is relative to the `core` directory |
+| `WEBDRIVER_HOSTNAME` | `localhost` | The host which is running headless Chrome. |

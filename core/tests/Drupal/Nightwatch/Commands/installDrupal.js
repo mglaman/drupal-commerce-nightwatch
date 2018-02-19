@@ -26,8 +26,8 @@ exports.command = function installDrupal(setupClass = '', done) {
   const self = this;
 
   let dbOption = '';
-  if (process.env.SIMPLETEST_DB && process.env.SIMPLETEST_DB !== undefined && process.env.SIMPLETEST_DB.length > 0) {
-    dbOption = `--db_url ${process.env.SIMPLETEST_DB}`;
+  if (process.env.DB_URL && process.env.DB_URL !== undefined && process.env.DB_URL.length > 0) {
+    dbOption = `--db_url ${process.env.DB_URL}`;
   }
 
   exec(`php ./scripts/setup-drupal-test.php setup-drupal-test --setup_class ${setupClass} --base_url ${process.env.BASE_URL} ${dbOption}`, (err, simpleTestCookie) => {
