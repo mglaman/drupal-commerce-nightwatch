@@ -1,6 +1,5 @@
 module.exports = {
   'Test page': (browser) => {
-    let installedDbPrefix = null;
     browser
       .installDrupal('\\Drupal\\TestSite\\TestSiteInstallTestScript', (dbPrefix) => {
         browser

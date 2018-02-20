@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 exports.command = function installDrupal(setupClass = '', callback) {
   const self = this;
 
-  let dbOption = process.env.DB_URL.length > 0 ? `--db_url ${process.env.DB_URL}` : '';
+  const dbOption = process.env.DB_URL.length > 0 ? `--db_url ${process.env.DB_URL}` : '';
   let dbPrefix = '';
 
   try {
