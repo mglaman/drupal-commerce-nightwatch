@@ -30,13 +30,13 @@ exports.command = function installDrupal(setupClass = '', done) {
     dbOption = `--db_url ${process.env.DB_URL}`;
   }
 
-  exec(`php ./scripts/setup-drupal-test.php setup-drupal-test --setup_class ${setupClass} --base_url ${process.env.BASE_URL} ${dbOption}`, (err, simpleTestCookie) => {
+  exec(`php ./scripts/test-site.php install --setup_class ${setupClass} --base_url ${process.env.BASE_URL} ${dbOption} --json`, (err, output) => {
     if (err) {
       console.error(err);
       return done(err);
     }
-
-    setupCookie(self, simpleTestCookie, done);
+    const install_data = JSON.parse(output);
+    setupCookie(self, install_data.user_agent, done);
   });
 
 
