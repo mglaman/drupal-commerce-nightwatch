@@ -30,7 +30,7 @@ exports.command = function installDrupal(setupClass = '', done) {
     dbOption = `--db_url ${process.env.DB_URL}`;
   }
 
-  exec(`php ./scripts/test-site.php install --setup_class ${setupClass} --base_url ${process.env.BASE_URL} ${dbOption} --json`, (err, output) => {
+  exec(`sudo -u ${process.env.APACHE_USER} php ./scripts/test-site.php install --setup_class ${setupClass} --base_url ${process.env.BASE_URL} ${dbOption} --json`, (err, output) => {
     if (err) {
       console.error(err);
       return done(err);
