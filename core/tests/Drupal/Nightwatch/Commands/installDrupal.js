@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { runAsWebserverIfAvailable } from '../globals';
+import { commandAsWebserver } from '../globals';
 
 exports.command = function installDrupal(setupClass = '', callback) {
   const self = this;
@@ -10,7 +10,7 @@ exports.command = function installDrupal(setupClass = '', callback) {
   try {
     // Single slash is replaced with 2 slashes because it will get printed on the command line,
     // which will be escaped again by the PHP script.
-    const install = execSync(runAsWebserverIfAvailable(`php ./scripts/test-site.php install --setup_class ${setupClass.replace(/\\/g, '\\\\')} --base_url ${process.env.BASE_URL} ${dbOption} --json`));
+    const install = execSync(commandAsWebserver(`php ./scripts/test-site.php install --setup_class ${setupClass.replace(/\\/g, '\\\\')} --base_url ${process.env.BASE_URL} ${dbOption} --json`));
     const installData = JSON.parse(install.toString());
     dbPrefix = installData.db_prefix;
     const matches = process.env.BASE_URL.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
