@@ -83,6 +83,9 @@ class TestSiteInstallCommand extends Command {
     // Validate the setup class prior to installing a database to avoid creating
     // unnecessary sites.
     $this->validateSetupClass($input->getOption('setup_class'));
+    // Ensure we can install a site in the sites/simpletest directory.
+    $this->ensureDirectory();
+
     $db_url = $input->getOption('db_url');
     $base_url = $input->getOption('base_url');
     putenv("SIMPLETEST_DB=$db_url");
@@ -128,6 +131,18 @@ class TestSiteInstallCommand extends Command {
 
     if (!is_subclass_of($class, TestSetupInterface::class)) {
       throw new \InvalidArgumentException('You need to define a class implementing \Drupal\TestSite\TestSetupInterface');
+    }
+  }
+
+  /**
+   * Ensures that the sites/simpletest directory exists and is writable.
+   */
+  protected function ensureDirectory() {
+    $root = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+    if (!is_writable($root . '/sites/simpletest')) {
+      if (!@mkdir($root . '/sites/simpletest')) {
+        throw new \RuntimeException($root . '/sites/simpletest must exist and be writable to install a test site');
+      }
     }
   }
 
