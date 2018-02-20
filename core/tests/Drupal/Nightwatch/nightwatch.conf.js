@@ -17,7 +17,7 @@ module.exports = {
         browserName: 'chrome',
         acceptSslCerts: true,
         chromeOptions: {
-          args: process.env.CHROME_ARGS.split(' '),
+          args: process.env.CHROME_ARGS ? process.env.CHROME_ARGS.split(' ') : [],
         },
       },
       screenshots: {
@@ -26,6 +26,7 @@ module.exports = {
         on_error: true,
         path: `${process.env.NIGHTWATCH_OUTPUT}/screenshots`,
       },
+      end_session_on_fail : true
     },
   },
 };

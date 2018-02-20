@@ -9,8 +9,12 @@
  * @return {object}
  *   The 'browser' object.
  */
-exports.command = function relativeURL(pathname) {
-  this
-    .url(`${process.env.BASE_URL}${pathname}`);
+exports.command = function relativeURL(pathname, callback) {
+  const self = this;
+  this.url(`${process.env.BASE_URL}${pathname}`);
+
+  if (typeof callback === 'function') {
+    callback.call(self);
+  }
   return this;
 };
