@@ -9,7 +9,7 @@ exports.command = function installDrupal(setupClass = '', callback) {
     // Single slash is replaced with 2 slashes because it will get printed on the command line, which will be escaped
     // again by the PHP script.
     const install = execSync(`sudo -u ${process.env.WEBSERVER_USER} php ./scripts/test-site.php install --setup_class ${setupClass.replace(/\\/g, '\\\\')} --base_url ${process.env.BASE_URL} ${dbOption} --json`);
-    const installData = JSON.parse(install);
+    const installData = JSON.parse(install.toString());
     const matches = process.env.BASE_URL.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
     const domain = matches[1];
     const path = matches[2];
