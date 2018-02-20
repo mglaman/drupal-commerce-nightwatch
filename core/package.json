@@ -5,7 +5,7 @@
   "private": true,
   "engines": {
     "yarn": "1.x",
-    "node": "9.x"
+    "node": "8.x"
   },
   "scripts": {
     "build:js": "cross-env BABEL_ENV=legacy node ./scripts/js/babel-es6-build.js",
