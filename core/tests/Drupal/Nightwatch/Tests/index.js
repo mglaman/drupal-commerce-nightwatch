@@ -7,7 +7,7 @@ module.exports = {
           .waitForElementVisible('body', 1000)
           .assert.containsText('body', 'Test page text')
           .uninstallDrupal(dbPrefix)
-          .end()
+          .end();
       });
   },
 };
