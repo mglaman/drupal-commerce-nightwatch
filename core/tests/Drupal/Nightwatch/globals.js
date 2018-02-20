@@ -8,6 +8,8 @@ const commandAsWebserver = (command) => {
   return command;
 };
 
+let phpWebServer;
+
 module.exports = {
   before: (done) => {
     if (!JSON.parse(process.env.CHROME_STANDALONE)) {
@@ -17,13 +19,16 @@ module.exports = {
     if (!process.env.BASE_URL) {
       // @todo Use https://www.drupal.org/project/ideas/issues/2911319 once its available.
       process.env.BASE_URL = 'http://localhost:8888';
-      spawn(commandAsWebserver('php'), ['-S', 'localhost:8888', '-t', '../', '.ht.router.php']);
+      phpWebServer = spawn(commandAsWebserver('php'), ['-S', 'localhost:8888', '.ht.router.php'], {cwd: '../'});
     }
     done();
   },
   after: (done) => {
     if (!JSON.parse(process.env.CHROME_STANDALONE)) {
       chromedriver.stop();
+    }
+    if (phpWebServer) {
+      phpWebServer.kill();
     }
     done();
   },
