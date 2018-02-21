@@ -1,12 +1,12 @@
 let databasePrefix;
 
 module.exports = {
-  before : function(browser) {
+  before: function(browser) {
     browser.installDrupal('\\Drupal\\TestSite\\TestSiteInstallTestScript', (dbPrefix) => {
       databasePrefix = dbPrefix;
     })
   },
-  after : function(browser, done) {
+  after: function(browser, done) {
     browser.uninstallDrupal(databasePrefix);
     done();
   },
