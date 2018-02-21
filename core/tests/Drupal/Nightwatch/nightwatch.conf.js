@@ -12,7 +12,7 @@ module.exports = {
     default: {
       selenium_port: process.env.WEBDRIVER_PORT,
       selenium_host: process.env.WEBDRIVER_HOSTNAME,
-      default_path_prefix: proces.env.WEBDRIVER_PATH_PREFIX || '',
+      default_path_prefix: process.env.WEBDRIVER_PATH_PREFIX || '',
       desiredCapabilities: {
         browserName: 'chrome',
         acceptSslCerts: true,
