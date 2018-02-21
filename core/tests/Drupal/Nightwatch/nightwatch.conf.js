@@ -10,14 +10,14 @@ module.exports = {
   },
   test_settings: {
     default: {
-      selenium_port: process.env.DRUPAL_NIGHTWATCH_WEBDRIVER_PORT,
-      selenium_host: process.env.DRUPAL_NIGHTWATCH_WEBDRIVER_HOSTNAME,
-      default_path_prefix: process.env.DRUPAL_NIGHTWATCH_WEBDRIVER_PATH_PREFIX || '',
+      selenium_port: process.env.DRUPAL_TEST_WEBDRIVER_PORT,
+      selenium_host: process.env.DRUPAL_TEST_WEBDRIVER_HOSTNAME,
+      default_path_prefix: process.env.DRUPAL_TEST_WEBDRIVER_PATH_PREFIX || '',
       desiredCapabilities: {
         browserName: 'chrome',
         acceptSslCerts: true,
         chromeOptions: {
-          args: process.env.DRUPAL_NIGHTWATCH_CHROME_ARGS ? process.env.DRUPAL_NIGHTWATCH_CHROME_ARGS.split(' ') : [],
+          args: process.env.DRUPAL_TEST_WEBDRIVER_CHROME_ARGS ? process.env.DRUPAL_TEST_WEBDRIVER_CHROME_ARGS.split(' ') : [],
         },
       },
       screenshots: {
