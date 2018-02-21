@@ -115,9 +115,12 @@ Some settings can be overridden with environment variables:
 
 | Variable   | Default Value | Description |
 |------------|---------------|-------------|
-| `BASE_URL` | none | Set this to the base URL for your Drupal install. Do not include the trailing slash. |
-| `DB_URL` | none | Set this to the database URL for your Drupal install, e.g. `mysql://username:password@localhost/databasename#table_prefix` |
 | `CHROME_ARGS` | none | A list of arguments to pass to Chrome, separated by spaces e.g. `--disable-gpu --headless --no-sandbox`. |
-| `CHROME_STANDALONE` | `false` | Set this to true if Chrome is running in a standalone container and does not require chromedriver.start() to be called. | 
+| `CHROME_STANDALONE` | `false` | Set this to true if Chrome is running in a standalone container and does not require chromedriver.start() to be called, for example, selenium-server. | 
+| `DRUPAL_BASE_URL` | none | Set this to the base URL for your Drupal install. Do not include the trailing slash. If there is no value the PHP in-built webserver will be used.|
+| `DRUPAL_DB_URL` | none | Set this to the database URL for your Drupal install, e.g. `mysql://username:password@localhost/databasename#table_prefix` |
+| `DRUPAL_WEBSERVER_USER` | none | Set this to the user running the webserver that is serving the Drupal install. For example, Apache often runs as www-data. |
 | `NIGHTWATCH_OUTPUT` | `reports/nightwatch` | This will output the test results into `core/reports/nightwatch`. Passing a value here is relative to the `core` directory |
-| `WEBDRIVER_HOSTNAME` | `localhost` | The host which is running headless Chrome. |
+| `WEBDRIVER_HOSTNAME` | `localhost` | The host which is running headless Chrome or selenium-server. |
+| `WEBDRIVER_PATH_PREFIX` | none | The path prefix to use for webdriver. For Chrome this is empty, for selenium-server this should be /wd/hub  |
+| `WEBDRIVER_PORT` | `9515` | The port which is running headless Chrome. Defaults to 9515 for chromedriver, for selenium-server this is often 4444. |
