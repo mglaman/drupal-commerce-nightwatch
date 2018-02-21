@@ -11,7 +11,7 @@
  */
 exports.command = function relativeURL(pathname, callback) {
   const self = this;
-  this.url(`${process.env.DRUPAL_BASE_URL}${pathname}`);
+  this.url(`${process.env.DRUPAL_NIGHTWATCH_BASE_URL}${pathname}`);
 
   if (typeof callback === 'function') {
     callback.call(self);
