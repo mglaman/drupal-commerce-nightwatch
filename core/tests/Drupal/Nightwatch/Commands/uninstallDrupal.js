@@ -3,10 +3,9 @@ import { commandAsWebserver } from '../globals';
 
 exports.command = function uninstallDrupal(dbPrefix = '', callback) {
   const self = this;
-  console.log(`Uninstalling ${dbPrefix}`);
 
   // Nightwatch doesn't like it when no actions are added in command file.
-  const dbOption = process.env.DB_URL.length > 0 ? `--db_url ${process.env.DB_URL}` : '';
+  const dbOption = process.env.DRUPAL_DB_URL.length > 0 ? `--db_url ${process.env.DRUPAL_DB_URL}` : '';
   try {
     execSync(commandAsWebserver(`php ./scripts/test-site.php tear-down ${dbOption} ${dbPrefix}`));
   }
