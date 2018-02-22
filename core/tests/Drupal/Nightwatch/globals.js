@@ -12,7 +12,7 @@ let phpWebServer;
 
 module.exports = {
   before: (done) => {
-    if (!JSON.parse(process.env.DRUPAL_TEST_WEBDRIVER_STANDALONE)) {
+    if (JSON.parse(process.env.DRUPAL_TEST_CHROMEDRIVER_AUTOSTART)) {
       chromedriver.start();
     }
     // Automatically start a webserver.
@@ -24,7 +24,7 @@ module.exports = {
     done();
   },
   after: (done) => {
-    if (!JSON.parse(process.env.DRUPAL_TEST_WEBDRIVER_STANDALONE)) {
+    if (JSON.parse(process.env.DRUPAL_TEST_CHROMEDRIVER_AUTOSTART)) {
       chromedriver.stop();
     }
     if (phpWebServer) {
