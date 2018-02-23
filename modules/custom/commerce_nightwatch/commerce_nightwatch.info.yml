@@ -1,0 +1,5 @@
+name: commerce_nightwatch
+description: wip experiment for nightwatch
+core: 8.x
+type: module
+hidden: true

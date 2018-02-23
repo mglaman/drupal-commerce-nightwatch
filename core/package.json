@@ -4,8 +4,7 @@
   "license": "GPL-2.0",
   "private": true,
   "engines": {
-    "yarn": "1.x",
-    "node": "8.x"
+    "yarn": "1.x"
   },
   "scripts": {
     "build:js": "cross-env BABEL_ENV=legacy node ./scripts/js/babel-es6-build.js",
@@ -33,7 +32,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "glob": "^7.1.1",
+    "glob": "^7.1.2",
     "minimist": "^1.2.0",
     "nightwatch": "^0.9.19",
     "stylelint": "^7.13.0",

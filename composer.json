@@ -5,7 +5,16 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "composer/installers": "^1.0.24",
-        "wikimedia/composer-merge-plugin": "^1.4"
+        "wikimedia/composer-merge-plugin": "^1.4",
+        "drupal/admin_toolbar": "~1.0",
+        "drupal/console": "~1.0",
+        "drupal/core": "~8.4",
+        "drupal/commerce": "~2.0",
+        "drupal/search_api": "~1.0",
+        "drupal/swiftmailer": "~1.0",
+        "drupal/token": "~1.0",
+        "drupalcommerce/commerce_base": "dev-8.x-1.x",
+        "drupal/commerce_braintree": "^1.0"
     },
     "replace": {
         "drupal/core": "^8.6"
@@ -48,6 +57,8 @@
         }
     },
     "scripts": {
+        "setup-nightwatch": "cd core && yarn install && cp .env.example .env",
+        "nightwatch": "cd core && yarn test:nightwatch --tag commerce",
         "pre-autoload-dump": "Drupal\\Core\\Composer\\Composer::preAutoloadDump",
         "post-autoload-dump": "Drupal\\Core\\Composer\\Composer::ensureHtaccess",
         "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
@@ -61,6 +72,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/drupalcommerce/commerce_base"
         }
     ]
 }

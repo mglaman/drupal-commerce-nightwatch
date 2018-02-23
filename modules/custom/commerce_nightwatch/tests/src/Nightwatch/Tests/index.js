@@ -1,9 +1,9 @@
 let databasePrefix;
 
 module.exports = {
-  '@tags': ['core'],
+  '@tags': ['commerce'],
   before: function(browser) {
-    browser.installDrupal('\\Drupal\\TestSite\\TestSiteInstallTestScript', (dbPrefix) => {
+    browser.installDrupal('\\Drupal\\commerce_nightwatch\\TestCommerceSiteInstall', (dbPrefix) => {
       databasePrefix = dbPrefix;
     })
   },

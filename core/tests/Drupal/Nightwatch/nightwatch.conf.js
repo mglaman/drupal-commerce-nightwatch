@@ -1,5 +1,27 @@
+import path from 'path';
+import glob from 'glob';
+
+const regex = /(.+\/tests\/src\/Nightwatch\/Tests)\/.*/g;
+const folders = {};
+let m;
+glob
+  .sync("**/tests/src/Nightwatch/Tests/**/*.js", {
+    cwd:  path.resolve(process.cwd(), '..'),
+  })
+  .forEach(file => {
+    while ((m = regex.exec(file)) !== null) {
+      // This is necessary to avoid infinite loops with zero-width matches
+      if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }
+
+      folders[`../${m[1]}`] = m[1];
+    }
+  });
+const testFolders = ['tests/Drupal/Nightwatch/Tests'].concat(Object.keys(folders));
+
 module.exports = {
-  src_folders: ['tests/Drupal/Nightwatch/Tests'],
+  src_folders: testFolders,
   output_folder: process.env.DRUPAL_NIGHTWATCH_OUTPUT,
   custom_commands_path: ['tests/Drupal/Nightwatch/Commands'],
   custom_assertions_path: '',
