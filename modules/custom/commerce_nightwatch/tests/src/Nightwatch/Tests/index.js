@@ -3,7 +3,7 @@ let databasePrefix;
 module.exports = {
   '@tags': ['commerce'],
   before: function(browser) {
-    browser.installDrupal('\\Drupal\\commerce_nightwatch\\TestCommerceSiteInstall', (dbPrefix) => {
+    browser.installDrupal('\\Drupal\\commerce_nightwatch\\CommerceBraintreeInstall', (dbPrefix) => {
       databasePrefix = dbPrefix;
     })
   },
@@ -11,11 +11,19 @@ module.exports = {
     browser.uninstallDrupal(databasePrefix);
     done();
   },
-  'Test page': (browser) => {
+  'Test payment form integration': (browser) => {
     browser
-      .relativeURL('/test-page')
+      .relativeURL('/product/1')
       .waitForElementVisible('body', 1000)
-      .assert.containsText('body', 'Test page text')
-      .end();
+      .assert.containsText('body', 'My product');
+    browser.click('input[name=op]');
+    browser
+      .waitForElementVisible('body', 1000)
+      .assert.containsText('body', 'My product added to your cart.')
+      .useXpath().click('//a[text()="your cart"]').useCss();
+    browser
+      .waitForElementVisible('body', 1000)
+      .assert.containsText('body', 'Shopping cart');
+    browser.end();
   },
 };
