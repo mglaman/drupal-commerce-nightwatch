@@ -24,6 +24,28 @@ module.exports = {
     browser
       .waitForElementVisible('body', 1000)
       .assert.containsText('body', 'Shopping cart');
+    browser.click('input[name=op]');
+    browser
+      .waitForElementVisible('body', 1000)
+      .assert.containsText('body', 'Returning Customer');
+    browser
+      .assert.containsText('body', 'Guest Checkout');
+    browser
+      .assert.containsText('body', 'Proceed to checkout. You can optionally create an account at the end.');
+    browser.click('input[value="Continue as Guest"]');
+
+    browser.setValue('input[name="contact_information[email]"]', 'myemail@example.com');
+    browser.setValue('input[name="contact_information[email_confirm]"]', 'myemail@example.com');
+    browser.setValue('input[name="billing_information[profile][address][0][address][given_name]"]', 'Johnny');
+    browser.setValue('input[name="billing_information[profile][address][0][address][family_name]"]', 'Maple Bacon');
+    browser.setValue('input[name="billing_information[profile][address][0][address][address_line1]"]', '2334 Breakfast Ave');
+    browser.setValue('input[name="billing_information[profile][address][0][address][postal_code]"]', '94043');
+    browser.setValue('input[name="billing_information[profile][address][0][address][locality]"]', 'Mountain View');
+    browser.setValue('input[name="billing_information[profile][address][0][address][administrative_area]"]', 'CA');
+
+    // Do iframe switching.
+    browser.frame('braintree-hosted-field-number');
+
     browser.end();
   },
 };
